@@ -1,11 +1,10 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
 <style>
 body{
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   font-family: 'Segoe UI', 'Tahoma', 'Verdana', 'sans-serif';
+   background-image: "https://wallpaperaccess.com/full/2314983.jpg";
 }
 * {box-sizing: border-box}
 input[type=text], input[type=password] {
@@ -37,11 +36,21 @@ button {
    margin: 8px 0;
    border: none;
    cursor: pointer;
+   padding: 20px;
+   box-shadow: 4px 3px;
+   border-radius: 20px;
+   border: none;
+   outline: none;
    width: 100%;
    opacity: 0.9;
 }
 button:hover {
    opacity:1;
+   padding: 20px;
+   box-shadow: 4px 3px;
+   border-radius: 20px;
+   border: none;
+   outline: none;
 }
 .cancel {
    padding: 14px 20px;
