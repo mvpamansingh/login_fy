@@ -60,10 +60,10 @@ class DataBase
         $email = $this->prepareData($email);
         $password = password_hash($password, PASSWORD_DEFAULT);
         $this->sql =
-            "INSERT INTO " . $table . " (fullname, username, password, email) VALUES ('" . $fullname . "','" . $username . "','" . $password . "','" . $email . "')";
-        if (mysqli_query($this->connect, $this->sql)) {
-            return true;
-        } else return false;
+            "INSERT INTO " . $table . "(fullname, username, password, email) VALUES ('" . $fullname . "','" . $username . "','" . $password . "','" . $email . "')";
+        if (!mysqli_query($this->connect, $this->sql)) {
+            return false;
+        } else return true;
     }
 
 }
