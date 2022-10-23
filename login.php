@@ -1,9 +1,11 @@
 <?php
 require "DataBase.php";
 $db = new DataBase();
-if (isset($_POST['username']) && isset($_POST['password'])) {
+$username = $_POST["username"];
+$password  = $_POST["password"];
+if (isset($username) && isset($password)) {
     if ($db->dbConnect()) {
-        if ($db->logIn("users", $_POST['username'], $_POST['password'])) {
+        if ($db->logIn("users", $username, $password)) {
             echo "Login Success";
         } else echo "Username or Password wrong";
     } else echo "Error: Database connection";

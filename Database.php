@@ -38,8 +38,10 @@ class DataBase
     {
         $username = $this->prepareData($username);
         $password = $this->prepareData($password);
+        $this->query = "SELECT * FROM ".$table." where password = '".$password . "'";
         $this->sql = "select * from " . $table . " where username = '" . $username . "'";
         $result = mysqli_query($this->connect, $this->sql);
+        $result_pwd = mysqli_connect($this->connnect, $this->query);
         $row = mysqli_fetch_assoc($result);
         if (mysqli_num_rows($result) != 0) {
             $dbusername = $row['username'];
