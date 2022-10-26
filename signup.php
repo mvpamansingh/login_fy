@@ -6,7 +6,8 @@ body{
    font-family: 'Segoe UI', 'Tahoma', 'Verdana', 'sans-serif';
    background-image: "https://wallpaperaccess.com/full/2314983.jpg";
 }
-* {box-sizing: border-box}
+
+*{box-sizing: border-box}
 input[type=text], input[type=password] {
    width: 100%;
    font-size: 28px;
@@ -26,6 +27,7 @@ input[type=text]:focus, input[type=password]:focus {
 hr {
    border: 1px solid #f1f1f1;
    margin-bottom: 25px;
+   padding: 12px;
 }
 button {
    font-size: 18px;
@@ -58,9 +60,11 @@ button:hover {
 }
 .formContainer {
    padding: 16px;
+   margin: 10px;
 }
 .formContainer p{
    font-size: 28px;
+   margin: 15px;
 }
 </style>
 <body>
@@ -92,6 +96,20 @@ style="color:dodgerblue">Terms & Privacy</a><p>
 <?php
 require "DataBase.php";
 $db = new DataBase();
+// Given password
+$password = $_POST['password'];
+
+// Validate password strength
+$uppercase = preg_match('@[A-Z]@', $password);
+$lowercase = preg_match('@[a-z]@', $password);
+$number    = preg_match('@[0-9]@', $password);
+$specialChars = preg_match('@[^\w]@', $password);
+
+if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
+    echo 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
+}else{
+    echo 'Strong password.';
+}
 if (isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password'])) {
     if ($db->dbConnect()) {
         if ($db->signUp("users", $_POST['fullname'], $_POST['email'], $_POST['username'], $_POST['password'])) {
